@@ -43,7 +43,7 @@ export default function Home() {
     <div style={{ 
       minHeight: '100vh',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      backgroundColor: '#0f172a'
+      backgroundColor: '#fff'
     }}>
       {/* Navigation */}
       <nav style={{
@@ -55,17 +55,31 @@ export default function Home() {
         margin: '0 auto'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00b894" strokeWidth="2.5">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1a1a2e" strokeWidth="2.5">
             <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
             <polyline points="9 22 9 12 15 12 15 22"/>
           </svg>
-          <span style={{ fontSize: '18px', fontWeight: '700', color: '#fff' }}>
-            OffMarket Daily
+          <span style={{ fontSize: '18px', fontWeight: '700', color: '#1a1a2e' }}>
+            Off Market Daily
           </span>
         </div>
         <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
-          <a href="#markets" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>Markets</a>
-          <a href="#about" style={{ color: '#94a3b8', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>About</a>
+          <a href="#markets" style={{ color: '#64748b', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>Markets</a>
+          <a href="#about" style={{ color: '#64748b', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>About</a>
+          <a 
+            href="#signup"
+            style={{ 
+              backgroundColor: '#00b894', 
+              color: '#fff', 
+              padding: '10px 20px', 
+              borderRadius: '8px',
+              textDecoration: 'none',
+              fontSize: '14px',
+              fontWeight: '500'
+            }}
+          >
+            Get Deal Alerts
+          </a>
         </div>
       </nav>
 
@@ -77,9 +91,9 @@ export default function Home() {
         textAlign: 'center'
       }}>
         <h1 style={{
-          fontSize: '56px',
+          fontSize: '52px',
           fontWeight: '800',
-          color: '#fff',
+          color: '#1e293b',
           lineHeight: '1.1',
           marginBottom: '24px',
           letterSpacing: '-1px'
@@ -89,7 +103,7 @@ export default function Home() {
         </h1>
         <p style={{
           fontSize: '20px',
-          color: '#94a3b8',
+          color: '#64748b',
           lineHeight: '1.6',
           marginBottom: '48px',
           maxWidth: '600px',
@@ -106,37 +120,40 @@ export default function Home() {
           marginBottom: '48px'
         }}>
           <div>
-            <div style={{ fontSize: '32px', fontWeight: '700', color: '#fff' }}>2,800+</div>
-            <div style={{ fontSize: '14px', color: '#64748b' }}>Cash Buyers</div>
-          </div>
-          <div style={{ width: '1px', backgroundColor: '#334155' }}></div>
-          <div>
-            <div style={{ fontSize: '32px', fontWeight: '700', color: '#fff' }}>100+</div>
+            <div style={{ fontSize: '32px', fontWeight: '700', color: '#1a1a2e' }}>Hundreds</div>
             <div style={{ fontSize: '14px', color: '#64748b' }}>Deals Sent Monthly</div>
           </div>
-          <div style={{ width: '1px', backgroundColor: '#334155' }}></div>
+          <div style={{ width: '1px', backgroundColor: '#e2e8f0' }}></div>
           <div>
-            <div style={{ fontSize: '32px', fontWeight: '700', color: '#fff' }}>7</div>
+            <div style={{ fontSize: '32px', fontWeight: '700', color: '#1a1a2e' }}>7</div>
             <div style={{ fontSize: '14px', color: '#64748b' }}>Active Markets</div>
+          </div>
+          <div style={{ width: '1px', backgroundColor: '#e2e8f0' }}></div>
+          <div>
+            <div style={{ fontSize: '32px', fontWeight: '700', color: '#1a1a2e' }}>First Look</div>
+            <div style={{ fontSize: '14px', color: '#64748b' }}>Before Open Market</div>
           </div>
         </div>
 
         {/* Signup Form */}
-        <div style={{
-          backgroundColor: '#1e293b',
+        <div id="signup" style={{
+          backgroundColor: '#f8fafc',
           borderRadius: '16px',
           padding: '32px',
           maxWidth: '480px',
           margin: '0 auto',
-          border: '1px solid #334155'
+          border: '1px solid #e2e8f0'
         }}>
+          <div style={{ fontSize: '13px', color: '#64748b', marginBottom: '16px', fontWeight: '500', letterSpacing: '0.5px' }}>
+            GET DEALS BEFORE THEY HIT THE MARKET
+          </div>
           {submitted ? (
             <div style={{ textAlign: 'center', padding: '20px 0' }}>
               <div style={{ fontSize: '48px', marginBottom: '16px' }}>✓</div>
               <div style={{ fontSize: '20px', fontWeight: '600', color: '#00b894', marginBottom: '8px' }}>
                 You're on the list
               </div>
-              <div style={{ color: '#94a3b8' }}>
+              <div style={{ color: '#64748b' }}>
                 We'll send you deals as they come in.
               </div>
             </div>
@@ -153,9 +170,9 @@ export default function Home() {
                     width: '100%',
                     padding: '14px 16px',
                     borderRadius: '8px',
-                    border: '1px solid #334155',
-                    backgroundColor: '#0f172a',
-                    color: '#fff',
+                    border: '1px solid #e2e8f0',
+                    backgroundColor: '#fff',
+                    color: '#1e293b',
                     fontSize: '16px',
                     boxSizing: 'border-box'
                   }}
@@ -172,9 +189,9 @@ export default function Home() {
                     width: '100%',
                     padding: '14px 16px',
                     borderRadius: '8px',
-                    border: '1px solid #334155',
-                    backgroundColor: '#0f172a',
-                    color: '#fff',
+                    border: '1px solid #e2e8f0',
+                    backgroundColor: '#fff',
+                    color: '#1e293b',
                     fontSize: '16px',
                     boxSizing: 'border-box'
                   }}
@@ -191,16 +208,16 @@ export default function Home() {
                     width: '100%',
                     padding: '14px 16px',
                     borderRadius: '8px',
-                    border: '1px solid #334155',
-                    backgroundColor: '#0f172a',
-                    color: '#fff',
+                    border: '1px solid #e2e8f0',
+                    backgroundColor: '#fff',
+                    color: '#1e293b',
                     fontSize: '16px',
                     boxSizing: 'border-box'
                   }}
                 />
               </div>
               <div style={{ marginBottom: '20px' }}>
-                <div style={{ color: '#94a3b8', fontSize: '13px', marginBottom: '10px', textAlign: 'left' }}>
+                <div style={{ color: '#64748b', fontSize: '13px', marginBottom: '10px', textAlign: 'left' }}>
                   Which markets?
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -215,8 +232,8 @@ export default function Home() {
                         border: 'none',
                         fontSize: '13px',
                         cursor: 'pointer',
-                        backgroundColor: markets.includes(market) ? '#00b894' : '#334155',
-                        color: '#fff',
+                        backgroundColor: markets.includes(market) ? '#00b894' : '#e2e8f0',
+                        color: markets.includes(market) ? '#fff' : '#475569',
                         fontWeight: '500',
                         transition: 'all 0.15s'
                       }}
@@ -232,7 +249,7 @@ export default function Home() {
                 style={{
                   width: '100%',
                   padding: '16px',
-                  backgroundColor: '#00b894',
+                  backgroundColor: '#1a1a2e',
                   color: '#fff',
                   border: 'none',
                   borderRadius: '8px',
@@ -243,7 +260,7 @@ export default function Home() {
               >
                 {submitting ? 'Joining...' : 'Join the Buyer List'}
               </button>
-              <div style={{ color: '#64748b', fontSize: '12px', marginTop: '12px' }}>
+              <div style={{ color: '#94a3b8', fontSize: '12px', marginTop: '12px' }}>
                 Free. Unsubscribe anytime.
               </div>
             </form>
@@ -254,20 +271,20 @@ export default function Home() {
       {/* Markets Section */}
       <section id="markets" style={{
         padding: '80px 40px',
-        backgroundColor: '#1e293b'
+        backgroundColor: '#f8fafc'
       }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <h2 style={{
             fontSize: '32px',
             fontWeight: '700',
-            color: '#fff',
+            color: '#1e293b',
             textAlign: 'center',
             marginBottom: '16px'
           }}>
             Active Markets
           </h2>
           <p style={{
-            color: '#94a3b8',
+            color: '#64748b',
             textAlign: 'center',
             marginBottom: '48px',
             fontSize: '16px'
@@ -292,15 +309,15 @@ export default function Home() {
               <div 
                 key={market.state}
                 style={{
-                  backgroundColor: '#0f172a',
+                  backgroundColor: '#fff',
                   borderRadius: '12px',
                   padding: '20px 28px',
-                  border: '1px solid #334155',
+                  border: '1px solid #e2e8f0',
                   textAlign: 'center',
                   minWidth: '200px'
                 }}
               >
-                <div style={{ fontWeight: '600', color: '#fff', fontSize: '16px', marginBottom: '4px' }}>
+                <div style={{ fontWeight: '600', color: '#1e293b', fontSize: '16px', marginBottom: '4px' }}>
                   {market.state}
                 </div>
                 <div style={{ color: '#64748b', fontSize: '13px' }}>
@@ -315,27 +332,27 @@ export default function Home() {
       {/* About Section */}
       <section id="about" style={{
         padding: '80px 40px',
-        backgroundColor: '#0f172a'
+        backgroundColor: '#fff'
       }}>
         <div style={{ maxWidth: '700px', margin: '0 auto', textAlign: 'center' }}>
           <h2 style={{
             fontSize: '32px',
             fontWeight: '700',
-            color: '#fff',
+            color: '#1e293b',
             marginBottom: '24px'
           }}>
-            What is OffMarket Daily?
+            What is Off Market Daily?
           </h2>
           <p style={{
-            color: '#94a3b8',
+            color: '#64748b',
             fontSize: '18px',
             lineHeight: '1.8',
             marginBottom: '24px'
           }}>
-            OffMarket Daily is a deal flow platform for serious investors. We deliver vetted investment opportunities before they hit the open market — directly to your phone.
+            Off Market Daily is a deal flow platform for serious investors. We deliver vetted investment opportunities before they hit the open market — directly to your phone.
           </p>
           <p style={{
-            color: '#64748b',
+            color: '#94a3b8',
             fontSize: '16px',
             lineHeight: '1.8'
           }}>
@@ -347,7 +364,7 @@ export default function Home() {
       {/* Bottom CTA */}
       <section style={{
         padding: '80px 40px',
-        backgroundColor: '#1e293b',
+        backgroundColor: '#1a1a2e',
         textAlign: 'center'
       }}>
         <div style={{ maxWidth: '600px', margin: '0 auto' }}>
@@ -364,11 +381,10 @@ export default function Home() {
             marginBottom: '32px',
             fontSize: '16px'
           }}>
-            Join 2,800+ cash buyers getting off-market deals weekly.
+            Join thousands of investors getting off-market deals monthly.
           </p>
           <a 
-            href="#"
-            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+            href="#signup"
             style={{
               display: 'inline-block',
               backgroundColor: '#00b894',
@@ -388,8 +404,8 @@ export default function Home() {
       {/* Footer */}
       <footer style={{
         padding: '40px',
-        borderTop: '1px solid #334155',
-        backgroundColor: '#0f172a'
+        borderTop: '1px solid #e2e8f0',
+        backgroundColor: '#fff'
       }}>
         <div style={{
           maxWidth: '1200px',
@@ -399,16 +415,16 @@ export default function Home() {
           alignItems: 'center'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00b894" strokeWidth="2.5">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1a1a2e" strokeWidth="2.5">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
               <polyline points="9 22 9 12 15 12 15 22"/>
             </svg>
-            <span style={{ fontSize: '14px', fontWeight: '600', color: '#fff' }}>
-              OffMarket Daily
+            <span style={{ fontSize: '14px', fontWeight: '600', color: '#1a1a2e' }}>
+              Off Market Daily
             </span>
           </div>
-          <div style={{ color: '#64748b', fontSize: '13px' }}>
-            © 2026 OffMarket Daily
+          <div style={{ color: '#94a3b8', fontSize: '13px' }}>
+            © 2026 Off Market Daily
           </div>
         </div>
       </footer>
