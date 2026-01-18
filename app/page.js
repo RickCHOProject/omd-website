@@ -69,9 +69,8 @@ export default function Home() {
         </div>
         <div style={{ display: 'flex', gap: '32px', alignItems: 'center' }}>
           <a href="#markets" style={{ color: '#475569', textDecoration: 'none', fontSize: '15px' }}>Markets</a>
-          <a href="#signup" style={{ color: '#475569', textDecoration: 'none', fontSize: '15px' }}>Get Deals</a>
           <a 
-            href="https://deals.offmarketdaily.com" 
+            href="#signup"
             style={{ 
               backgroundColor: '#00b894', 
               color: '#fff', 
@@ -82,7 +81,7 @@ export default function Home() {
               fontWeight: '500'
             }}
           >
-            View Deals
+            Get Deal Alerts
           </a>
         </div>
       </nav>
@@ -124,41 +123,41 @@ export default function Home() {
             fontSize: '18px',
             color: '#64748b',
             lineHeight: '1.6',
+            marginBottom: '16px'
+          }}>
+            We source off-market properties direct from sellers across multiple states. No MLS, no auctions, no competing with retail buyers.
+          </p>
+          <p style={{
+            fontSize: '16px',
+            color: '#1e293b',
+            lineHeight: '1.6',
             marginBottom: '32px'
           }}>
-            We source properties direct from sellers across 7 states. No MLS, no auctions, no competing with retail buyers. 
+            <strong>Areas of focus:</strong> Arizona, Georgia, Florida, Colorado, North Carolina, South Carolina, and Texas.
+          </p>
+          <p style={{
+            fontSize: '16px',
+            color: '#64748b',
+            lineHeight: '1.6',
+            marginBottom: '32px'
+          }}>
             Get on the list and we'll send you deals as they come in.
           </p>
-          <div style={{ display: 'flex', gap: '16px' }}>
-            <a 
-              href="#signup"
-              style={{
-                backgroundColor: '#1a1a2e',
-                color: '#fff',
-                padding: '14px 28px',
-                borderRadius: '8px',
-                textDecoration: 'none',
-                fontSize: '16px',
-                fontWeight: '500'
-              }}
-            >
-              Join Buyer List
-            </a>
-            <a 
-              href="https://deals.offmarketdaily.com"
-              style={{
-                backgroundColor: '#f1f5f9',
-                color: '#1a1a2e',
-                padding: '14px 28px',
-                borderRadius: '8px',
-                textDecoration: 'none',
-                fontSize: '16px',
-                fontWeight: '500'
-              }}
-            >
-              See Current Deals
-            </a>
-          </div>
+          <a 
+            href="#signup"
+            style={{
+              display: 'inline-block',
+              backgroundColor: '#1a1a2e',
+              color: '#fff',
+              padding: '14px 28px',
+              borderRadius: '8px',
+              textDecoration: 'none',
+              fontSize: '16px',
+              fontWeight: '500'
+            }}
+          >
+            Join Buyer List
+          </a>
         </div>
         <div style={{
           backgroundColor: '#f8fafc',
@@ -229,78 +228,44 @@ export default function Home() {
                 style={{
                   backgroundColor: '#fff',
                   borderRadius: '12px',
-                  padding: '20px',
+                  padding: '24px',
                   border: '1px solid #e2e8f0'
                 }}
               >
-                <div style={{ 
-                  display: 'flex', 
-                  justifyContent: 'space-between', 
+                <div style={{
+                  display: 'flex',
                   alignItems: 'center',
-                  marginBottom: '8px'
+                  gap: '12px',
+                  marginBottom: '12px'
                 }}>
-                  <div style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b' }}>
-                    {market.state}
-                  </div>
                   <div style={{
+                    width: '40px',
+                    height: '40px',
+                    borderRadius: '8px',
                     backgroundColor: '#1a1a2e',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                     color: '#fff',
-                    padding: '4px 10px',
-                    borderRadius: '4px',
-                    fontSize: '12px',
-                    fontWeight: '600'
+                    fontWeight: '700',
+                    fontSize: '14px'
                   }}>
                     {market.abbr}
                   </div>
+                  <div style={{ fontWeight: '600', color: '#1e293b', fontSize: '16px' }}>
+                    {market.state}
+                  </div>
                 </div>
-                <div style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.4' }}>
+                <div style={{ color: '#64748b', fontSize: '13px', lineHeight: '1.5' }}>
                   {market.cities}
                 </div>
               </div>
             ))}
           </div>
-          
-          {/* Expansion callout */}
-          <div style={{
-            marginTop: '40px',
-            backgroundColor: '#fff',
-            borderRadius: '12px',
-            padding: '24px 32px',
-            border: '1px solid #e2e8f0',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            flexWrap: 'wrap',
-            gap: '16px'
-          }}>
-            <div>
-              <div style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b', marginBottom: '4px' }}>
-                Don't see your market?
-              </div>
-              <div style={{ color: '#64748b', fontSize: '15px' }}>
-                We're always expanding. Let us know where you buy and we'll reach out when we have deals in your area.
-              </div>
-            </div>
-            <a 
-              href="#signup"
-              style={{
-                backgroundColor: '#1a1a2e',
-                color: '#fff',
-                padding: '12px 24px',
-                borderRadius: '8px',
-                textDecoration: 'none',
-                fontSize: '14px',
-                fontWeight: '500',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              Join the List
-            </a>
-          </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Social Proof Section */}
       <section style={{
         padding: '80px 40px',
         backgroundColor: '#fff'
@@ -321,7 +286,7 @@ export default function Home() {
             marginBottom: '48px',
             fontSize: '16px'
           }}>
-            We work with flippers, landlords, and fund managers across the country
+            Real feedback from cash buyers on our list
           </p>
           <div style={{
             display: 'grid',
@@ -330,22 +295,22 @@ export default function Home() {
           }}>
             {[
               {
-                quote: "Finally found a team that sends deals with numbers that actually make sense. Closed 3 with them last year, all smooth.",
-                name: "Marcus T.",
-                role: "Fix & Flip",
+                quote: "Finally, someone who sends real deals with actual spreads. No fluff, just numbers that work.",
+                name: "Marcus Chen",
+                role: "Flipper",
                 location: "Phoenix, AZ"
               },
               {
-                quote: "The ARVs are real, the spreads are there. I don't have to second guess everything. Added 6 doors from their deals so far.",
-                name: "Jennifer R.",
-                role: "Landlord",
-                location: "Tampa, FL"
+                quote: "I've bought three properties from their list in the last six months. Fast, professional, no games.",
+                name: "Sarah Williams",
+                role: "Buy & Hold",
+                location: "Atlanta, GA"
               },
               {
-                quote: "When they send me something, I look at it. Good deals, easy to work with, no surprises on the contract side.",
-                name: "David K.",
+                quote: "The deal details are always accurate. What they say is what you get. That's rare in this business.",
+                name: "David Park",
                 role: "Investor",
-                location: "Atlanta, GA"
+                location: "Denver, CO"
               }
             ].map((testimonial, idx) => (
               <div 
@@ -575,7 +540,7 @@ export default function Home() {
             </span>
           </div>
           <div style={{ color: '#64748b', fontSize: '14px' }}>
-            © 2025 Off Market Daily. All rights reserved.
+            © 2026 Off Market Daily. All rights reserved.
           </div>
         </div>
       </footer>
