@@ -1,0 +1,75 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  transition: opacity 0.15s;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+button {
+  transition: transform 0.1s, opacity 0.15s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+input::placeholder {
+  color: #94a3b8;
+}
+
+@media (max-width: 768px) {
+  section > div {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+  
+  nav {
+    padding: 16px 20px !important;
+  }
+  
+  nav > div:last-child {
+    gap: 16px !important;
+  }
+  
+  nav > div:last-child > a:first-child,
+  nav > div:last-child > a:nth-child(2) {
+    display: none;
+  }
+}
+
+@media (max-width: 1024px) {
+  /* Hero grid - 1 column on tablet/mobile */
+  section:first-of-type {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Markets grid - 2 columns on tablet */
+  section:nth-of-type(2) > div > div:nth-of-type(2) {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  
+  /* Testimonials grid - 1 column on tablet/mobile */
+  section:nth-of-type(3) > div > div:last-child {
+    grid-template-columns: 1fr !important;
+  }
+}
