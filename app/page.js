@@ -65,7 +65,7 @@ export default function Home() {
         </div>
         <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
           <a href="#markets" style={{ color: '#64748b', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>Markets</a>
-          <a href="#about" style={{ color: '#64748b', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>About</a>
+          <a href="#about" style={{ color: '#64748b', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>Why Off Market</a>
           <a 
             href="#signup"
             style={{ 
@@ -111,8 +111,8 @@ export default function Home() {
           marginBottom: '24px',
           letterSpacing: '-1px'
         }}>
-          First Access to<br/>
-          <span style={{ color: '#00b894' }}>Off-Market Deals</span>
+          Off-Market Properties<br/>
+          <span style={{ color: '#00b894' }}>Sent Direct to Investors</span>
         </h1>
         <p style={{
           fontSize: '20px',
@@ -122,7 +122,7 @@ export default function Home() {
           maxWidth: '600px',
           margin: '0 auto 48px'
         }}>
-          Investment properties across 7 states. Delivered before they hit the open market.
+          First access to investment properties with real margins — perfect for BRRRR, rentals, and fix & flip deals across Arizona, Georgia, Florida, Texas, Colorado, and more.
         </p>
 
         {/* Stats Row */}
@@ -295,7 +295,7 @@ export default function Home() {
             textAlign: 'center',
             marginBottom: '16px'
           }}>
-            Active Markets
+            Off Market Properties by State
           </h2>
           <p style={{
             color: '#64748b',
@@ -303,7 +303,7 @@ export default function Home() {
             marginBottom: '48px',
             fontSize: '16px'
           }}>
-            Deals coming in from these states every week
+            Investment properties for cash buyers across these markets
           </p>
           <div style={{
             display: 'flex',
@@ -355,7 +355,7 @@ export default function Home() {
             color: '#1e293b',
             marginBottom: '24px'
           }}>
-            What is Off Market Daily?
+            Why Off Market Properties?
           </h2>
           <p style={{
             color: '#64748b',
@@ -363,14 +363,14 @@ export default function Home() {
             lineHeight: '1.8',
             marginBottom: '24px'
           }}>
-            Off Market Daily is a deal flow platform for serious investors. We deliver vetted investment opportunities before they hit the open market — directly to your phone.
+            Off market properties often come with built-in equity and real margins — making the numbers work for BRRRR investors, rental property buyers, and fix & flip operators.
           </p>
           <p style={{
             color: '#94a3b8',
             fontSize: '16px',
             lineHeight: '1.8'
           }}>
-            No MLS listings. No bidding wars. Just off-market properties with real upside, sent to buyers who move fast.
+            Off Market Daily gives cash buyers and real estate investors first access to vetted investment deals before they go anywhere else. Properties sent direct across Arizona, Georgia, Florida, Texas, Colorado, North Carolina, and South Carolina.
           </p>
         </div>
       </section>
@@ -388,14 +388,14 @@ export default function Home() {
             color: '#fff',
             marginBottom: '16px'
           }}>
-            Ready to see deals?
+            Ready to See Off Market Deals?
           </h2>
           <p style={{
             color: '#94a3b8',
             marginBottom: '32px',
             fontSize: '16px'
           }}>
-            Join thousands of investors getting off-market deals monthly.
+            Join thousands of real estate investors getting off market properties sent direct.
           </p>
           <a 
             href="#signup"
@@ -412,6 +412,69 @@ export default function Home() {
           >
             Join the Buyer List
           </a>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section style={{
+        padding: '80px 40px',
+        backgroundColor: '#fff'
+      }}>
+        <div style={{ maxWidth: '700px', margin: '0 auto' }}>
+          <h2 style={{
+            fontSize: '32px',
+            fontWeight: '700',
+            color: '#1e293b',
+            textAlign: 'center',
+            marginBottom: '48px'
+          }}>
+            Frequently Asked Questions
+          </h2>
+          
+          <div style={{ marginBottom: '32px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+              What is Off Market Daily?
+            </h3>
+            <p style={{ color: '#64748b', lineHeight: '1.7' }}>
+              Off Market Daily is a deal flow platform that sends off market investment properties directly to real estate investors. We source properties across Arizona, Georgia, Florida, Texas, Colorado, North Carolina, and South Carolina — delivering deals with real margins for BRRRR, rentals, and fix & flip strategies.
+            </p>
+          </div>
+
+          <div style={{ marginBottom: '32px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+              What are off market properties?
+            </h3>
+            <p style={{ color: '#64748b', lineHeight: '1.7' }}>
+              Off market properties are real estate deals that are not listed on the MLS or public marketplaces. These properties often come with built-in equity and better margins because they are sourced directly before reaching the open market.
+            </p>
+          </div>
+
+          <div style={{ marginBottom: '32px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+              Who is Off Market Daily for?
+            </h3>
+            <p style={{ color: '#64748b', lineHeight: '1.7' }}>
+              Off Market Daily is for cash buyers, real estate investors, BRRRR investors, rental property buyers, and fix & flip operators looking for investment properties with real margins. Our buyers include individuals, LLCs, and investment funds.
+            </p>
+          </div>
+
+          <div style={{ marginBottom: '32px' }}>
+            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+              What states do you have off market deals in?
+            </h3>
+            <p style={{ color: '#64748b', lineHeight: '1.7' }}>
+              We currently source off market properties in Arizona (Phoenix, Mesa, Tucson), Georgia (Atlanta, Macon), Florida (Tampa, Orlando, Miami), Texas (Dallas, Austin, San Antonio), Colorado (Denver, Colorado Springs), North Carolina (Charlotte, Greensboro), and South Carolina (Columbia, Charleston).
+            </p>
+          </div>
+
+          <div>
+            <h3 style={{ fontSize: '18px', fontWeight: '600', color: '#1e293b', marginBottom: '8px' }}>
+              Is it free to join?
+            </h3>
+            <p style={{ color: '#64748b', lineHeight: '1.7' }}>
+              Yes, joining the Off Market Daily buyer list is completely free. You will receive off market investment properties sent directly to you as they become available in your selected markets.
+            </p>
+          </div>
         </div>
       </section>
 
