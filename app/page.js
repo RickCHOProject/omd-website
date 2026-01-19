@@ -415,6 +415,100 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Questions Section */}
+      <section style={{
+        padding: '80px 40px',
+        backgroundColor: '#f8fafc'
+      }}>
+        <div style={{ maxWidth: '500px', margin: '0 auto' }}>
+          <h2 style={{
+            fontSize: '28px',
+            fontWeight: '700',
+            color: '#1e293b',
+            textAlign: 'center',
+            marginBottom: '16px'
+          }}>
+            Questions?
+          </h2>
+          <p style={{
+            color: '#64748b',
+            textAlign: 'center',
+            marginBottom: '32px',
+            fontSize: '16px'
+          }}>
+            Send us a message and we'll get back to you.
+          </p>
+          <form onSubmit={(e) => { e.preventDefault(); /* TODO: Supabase */ }}>
+            <div style={{ marginBottom: '12px' }}>
+              <input
+                type="text"
+                placeholder="Name"
+                style={{
+                  width: '100%',
+                  padding: '14px 16px',
+                  borderRadius: '8px',
+                  border: '1px solid #e2e8f0',
+                  backgroundColor: '#fff',
+                  color: '#1e293b',
+                  fontSize: '16px',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '12px' }}>
+              <input
+                type="email"
+                placeholder="Email"
+                style={{
+                  width: '100%',
+                  padding: '14px 16px',
+                  borderRadius: '8px',
+                  border: '1px solid #e2e8f0',
+                  backgroundColor: '#fff',
+                  color: '#1e293b',
+                  fontSize: '16px',
+                  boxSizing: 'border-box'
+                }}
+              />
+            </div>
+            <div style={{ marginBottom: '16px' }}>
+              <textarea
+                placeholder="Your message..."
+                rows={4}
+                style={{
+                  width: '100%',
+                  padding: '14px 16px',
+                  borderRadius: '8px',
+                  border: '1px solid #e2e8f0',
+                  backgroundColor: '#fff',
+                  color: '#1e293b',
+                  fontSize: '16px',
+                  boxSizing: 'border-box',
+                  resize: 'vertical',
+                  fontFamily: 'inherit'
+                }}
+              />
+            </div>
+            <button
+              type="submit"
+              style={{
+                width: '100%',
+                padding: '14px',
+                backgroundColor: '#1a1a2e',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '8px',
+                fontSize: '16px',
+                fontWeight: '600',
+                cursor: 'pointer'
+              }}
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer style={{
         padding: '40px',
