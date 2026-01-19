@@ -273,8 +273,8 @@ export default function Home() {
               >
                 {submitting ? 'Joining...' : 'Join the Buyer List'}
               </button>
-              <div style={{ color: '#94a3b8', fontSize: '12px', marginTop: '12px' }}>
-                Free. Unsubscribe anytime.
+              <div style={{ color: '#94a3b8', fontSize: '11px', marginTop: '12px', lineHeight: '1.4' }}>
+                By joining, you agree to receive deal alerts via email and SMS. Unsubscribe anytime.
               </div>
             </form>
           )}
