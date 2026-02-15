@@ -28,14 +28,34 @@ export default function Home() {
     }
   };
 
+  const [error, setError] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+    setError('');
     
-    // TODO: Connect to GHL webhook
-    await new Promise(r => setTimeout(r, 1000));
+    try {
+      const response = await fetch('/api/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          markets: markets.join(', '),
+          source: 'OMD Signup Form'
+        })
+      });
+      
+      if (!response.ok) throw new Error('Failed to submit');
+      
+      setSubmitted(true);
+    } catch (err) {
+      console.error('Form submission error:', err);
+      setError('Something went wrong. Please try again.');
+    }
     
-    setSubmitted(true);
     setSubmitting(false);
   };
 
@@ -273,6 +293,11 @@ export default function Home() {
               >
                 {submitting ? 'Joining...' : 'Join the Buyer List'}
               </button>
+              {error && (
+                <div style={{ color: '#e74c3c', fontSize: '13px', marginTop: '8px', textAlign: 'center' }}>
+                  {error}
+                </div>
+              )}
               <div style={{ color: '#94a3b8', fontSize: '11px', marginTop: '12px', lineHeight: '1.4' }}>
                 By joining, you agree to receive deal alerts via email and SMS. Unsubscribe anytime.
               </div>
