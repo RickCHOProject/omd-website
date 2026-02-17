@@ -86,6 +86,7 @@ export default function Home() {
         <div style={{ display: 'flex', gap: '24px', alignItems: 'center' }}>
           <a href="#markets" style={{ color: '#64748b', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>Markets</a>
           <a href="#about" style={{ color: '#64748b', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>Why Off Market</a>
+          <a href="https://blog.offmarketdaily.com" target="_blank" rel="noopener noreferrer" style={{ color: '#64748b', textDecoration: 'none', fontSize: '14px', fontWeight: '500' }}>Blog</a>
           <a 
             href="#signup"
             style={{ 
