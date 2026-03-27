@@ -1,0 +1,122 @@
+[
+  {
+    "id": "fred_MORTGAGE30US",
+    "series": "MORTGAGE30US",
+    "title": "30-Year Fixed Rate Mortgage Average",
+    "unit": "percent",
+    "frequency": "weekly",
+    "lastUpdate": "2026-03-22T00:00:00Z",
+    "data": [
+      {
+        "date": "2026-03-22",
+        "value": 6.89,
+        "change": -0.12
+      },
+      {
+        "date": "2026-03-15",
+        "value": 7.01,
+        "change": 0.08
+      },
+      {
+        "date": "2026-03-08",
+        "value": 6.93,
+        "change": -0.05
+      },
+      {
+        "date": "2026-03-01",
+        "value": 6.98,
+        "change": 0.15
+      }
+    ]
+  },
+  {
+    "id": "fred_HOUST",
+    "series": "HOUST",
+    "title": "Housing Starts",
+    "unit": "thousands of units",
+    "frequency": "monthly",
+    "lastUpdate": "2026-02-28T00:00:00Z",
+    "data": [
+      {
+        "date": "2026-02-01",
+        "value": 1248,
+        "change": 45
+      },
+      {
+        "date": "2026-01-01",
+        "value": 1203,
+        "change": -32
+      },
+      {
+        "date": "2025-12-01",
+        "value": 1235,
+        "change": 78
+      },
+      {
+        "date": "2025-11-01",
+        "value": 1157,
+        "change": -23
+      }
+    ]
+  },
+  {
+    "id": "fred_PERMIT",
+    "series": "PERMIT",
+    "title": "Building Permits",
+    "unit": "thousands of units",
+    "frequency": "monthly",
+    "lastUpdate": "2026-02-28T00:00:00Z",
+    "data": [
+      {
+        "date": "2026-02-01",
+        "value": 1389,
+        "change": 82
+      },
+      {
+        "date": "2026-01-01",
+        "value": 1307,
+        "change": -15
+      },
+      {
+        "date": "2025-12-01",
+        "value": 1322,
+        "change": 112
+      },
+      {
+        "date": "2025-11-01",
+        "value": 1210,
+        "change": 45
+      }
+    ]
+  },
+  {
+    "id": "fred_MSPUS",
+    "series": "MSPUS",
+    "title": "Median Sales Price of Existing Homes",
+    "unit": "thousands of dollars",
+    "frequency": "monthly",
+    "lastUpdate": "2026-02-28T00:00:00Z",
+    "data": [
+      {
+        "date": "2026-02-01",
+        "value": 438.5,
+        "change": 12.3
+      },
+      {
+        "date": "2026-01-01",
+        "value": 426.2,
+        "change": 8.7
+      },
+      {
+        "date": "2025-12-01",
+        "value": 417.5,
+        "change": -5.2
+      },
+      {
+        "date": "2025-11-01",
+        "value": 422.7,
+        "change": 3.1
+      }
+    ]
+  }
+]

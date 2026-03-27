@@ -1,19 +1,21 @@
 import './globals.css'
+import Link from 'next/link'
+import './nav.css'
 
 export const metadata = {
-  title: 'Off Market Properties for Investors | BRRRR, Rentals & Flips | 7 States',
-  description: 'Get first access to off market investment properties across Arizona, Georgia, Florida, Texas, Colorado & more. Real margins for BRRRR, rentals, and fix & flip deals. Join free.',
-  keywords: 'off market properties, off market deals, investment properties, BRRRR properties, rental properties for sale, fix and flip deals, real estate investors, Arizona investment properties, Georgia investment properties, Florida investment properties, Texas investment properties, Colorado investment properties',
+  title: 'Off Market Daily | AI-Powered Real Estate Intelligence Platform',
+  description: 'AI-driven real estate intelligence platform with market data dashboards, prediction engine, and creator credibility tracking.',
+  keywords: 'off market properties, real estate data, market analysis, investment intelligence',
   openGraph: {
-    title: 'Off Market Investment Properties | 7 States | Join Free',
-    description: 'First access to off market properties with real margins. BRRRR, rentals, and flip deals across AZ, GA, FL, TX, CO, NC, SC.',
+    title: 'Off Market Daily | AI-Powered RE Intelligence',
+    description: 'Real estate intelligence platform with market data, predictions, and creator analysis.',
     type: 'website',
     url: 'https://offmarketdaily.com',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Off Market Investment Properties | Join Free',
-    description: 'First access to off market deals with real margins. BRRRR, rentals, flips across 7 states.',
+    title: 'Off Market Daily | AI-Powered RE Intelligence',
+    description: 'Real estate intelligence platform with market data, predictions, and creator analysis.',
   },
   robots: 'index, follow',
   alternates: {
@@ -93,7 +95,30 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqData) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <nav className="navbar">
+          <div className="nav-container">
+            <Link href="/" className="nav-logo">
+              OMD
+            </Link>
+            <div className="nav-menu">
+              <Link href="/dashboard" className="nav-link">
+                Dashboard
+              </Link>
+              <Link href="/predictions" className="nav-link">
+                Predictions
+              </Link>
+              <Link href="/creators" className="nav-link">
+                Creators
+              </Link>
+              <Link href="/feed" className="nav-link">
+                Feed
+              </Link>
+            </div>
+          </div>
+        </nav>
+        {children}
+      </body>
     </html>
   )
 }

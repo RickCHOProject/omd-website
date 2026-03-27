@@ -1,0 +1,38 @@
+[
+  {
+    "id": "pred_001",
+    "title": "30-Year Mortgage Rate Will Fall Below 6.5%",
+    "description": "Within 90 days, the 30-year mortgage rate will fall below 6.5% based on Fed policy trajectory",
+    "marketSegment": "mortgage_rates",
+    "prediction": "Below 6.5%",
+    "timeframe": "90 days",
+    "createdAt": "2026-03-15T10:00:00Z",
+    "expiresAt": "2026-06-15T10:00:00Z",
+    "confidence": 0.72,
+    "status": "active",
+    "rationale": "Fed signals suggest rate cuts coming in Q2. Historical data shows correlation with inflation readings.",
+    "actualOutcome": null,
+    "resolved": false,
+    "verdict": null,
+    "gradedAt": null,
+    "accuracy": null
+  },
+  {
+    "id": "pred_002",
+    "title": "Housing Starts Will Rise 8-12%",
+    "description": "Housing starts in Q2 2026 will show 8-12% increase YoY due to pent-up demand",
+    "marketSegment": "housing_starts",
+    "prediction": "8-12% YoY increase",
+    "timeframe": "Q2 2026",
+    "createdAt": "2026-03-10T14:30:00Z",
+    "expiresAt": "2026-06-30T23:59:00Z",
+    "confidence": 0.68,
+    "status": "active",
+    "rationale": "Supply chain normalization and consumer sentiment data support increased construction activity",
+    "actualOutcome": null,
+    "resolved": false,
+    "verdict": null,
+    "gradedAt": null,
+    "accuracy": null
+  }
+]
