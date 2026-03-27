@@ -61,7 +61,7 @@ const SERIES_CONTEXT = {
   },
   HOUST: {
     what: 'The number of new residential construction projects started each month (in thousands).',
-    whyItMatters: 'New construction is future supply. High starts today = more inventory in 6-12 months. For wholesalers: new construction areas often mean motivated existing-home sellers competing with builders.',
+    whyItMatters: 'New construction is future supply. High starts today = more inventory in 6-12 months. In new construction areas, existing-home sellers often compete with builders — creating motivated sellers and better acquisition opportunities.',
     getSignal: (value, change) => {
       if (value > 1300) return { label: 'SUPPLY INCOMING', tone: 'neutral', text: `${value}K starts — significant pipeline. Builders are confident but this supply will hit in 6-12 months. Watch for builder concessions that pressure resale comps.` };
       if (value > 1100) return { label: 'MODERATE BUILD', tone: 'neutral', text: `${value}K starts — healthy pace. Supply pipeline is steady but not flooding. Balanced market ahead.` };
@@ -373,6 +373,11 @@ export default function MarketPage() {
   const [marketData, setMarketData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [expandedCards, setExpandedCards] = useState({});
+
+  const toggleCard = (id) => {
+    setExpandedCards((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
 
   useEffect(() => {
     async function fetchMarketData() {
@@ -409,6 +414,19 @@ export default function MarketPage() {
     if (unit === 'listings') return value >= 1000 ? `${(value / 1000).toFixed(0)}K` : value.toLocaleString();
     if (unit === 'days') return `${value}`;
     return value.toFixed(2);
+  };
+
+  const formatChange = (change, unit) => {
+    if (change === null || change === undefined) return '';
+    const abs = Math.abs(change);
+    if (unit === 'listings') {
+      if (abs >= 1000) return `${(abs / 1000).toFixed(1)}K`;
+      return abs.toFixed(0);
+    }
+    if (unit === 'thousands of dollars') return abs.toFixed(1);
+    if (unit === 'dollars per barrel') return `$${abs.toFixed(2)}`;
+    if (abs >= 100) return abs.toFixed(0);
+    return abs.toFixed(2);
   };
 
   const getChangeColor = (change, series) => {
@@ -699,55 +717,68 @@ export default function MarketPage() {
                       style={{ color: getChangeColor(latest.change, series) }}
                     >
                       <span className={styles.arrow}>{getChangeArrow(latest.change)}</span>
-                      {Math.abs(latest.change).toFixed(2)}
+                      {formatChange(latest.change, series.unit)}
                     </p>
                   )}
                 </div>
 
-                {signal && (
-                  <div className={`${styles.signalBadge} ${styles[`signal_${signal.tone}`]}`}>
-                    {signal.label}
-                  </div>
-                )}
-
-                <p className={styles.unit}>{series.unit}</p>
-
-                {latest && (
-                  <p className={styles.lastUpdate}>
-                    Updated {new Date(latest.date || series.lastUpdate).toLocaleDateString('en-US', {
-                      month: 'short',
-                      day: 'numeric',
-                    })}
-                  </p>
-                )}
-
-                {signal && (
-                  <div className={styles.signalText}>
-                    <p>{signal.text}</p>
-                  </div>
-                )}
-
-                {context?.whyItMatters && (
-                  <div className={styles.contextText}>
-                    <span className={styles.contextLabel}>Why this matters:</span>
-                    <p>{context.whyItMatters}</p>
-                  </div>
-                )}
-
-                {recentData.length > 1 && (
-                  <div className={styles.sparklineContainer}>
-                    <div className={styles.sparkline}>
-                      {recentData.map((point, idx) => (
-                        <div
-                          key={idx}
-                          className={styles.bar}
-                          style={{
-                            height: `${getBarHeight(point.value, sparklineMetrics)}%`,
-                          }}
-                          title={`${point.date}: ${point.value}`}
-                        />
-                      ))}
+                <div className={styles.cardMeta}>
+                  {signal && (
+                    <div className={`${styles.signalBadge} ${styles[`signal_${signal.tone}`]}`}>
+                      {signal.label}
                     </div>
+                  )}
+                  {latest && (
+                    <span className={styles.lastUpdate}>
+                      {new Date(latest.date || series.lastUpdate).toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                      })}
+                    </span>
+                  )}
+                </div>
+
+                {/* Expandable details section */}
+                <button
+                  className={styles.expandToggle}
+                  onClick={() => toggleCard(series.id)}
+                  aria-expanded={!!expandedCards[series.id]}
+                >
+                  <span>{expandedCards[series.id] ? 'Less' : 'What does this mean?'}</span>
+                  <span className={`${styles.expandArrow} ${expandedCards[series.id] ? styles.expandArrowUp : ''}`}>▾</span>
+                </button>
+
+                {expandedCards[series.id] && (
+                  <div className={styles.expandedContent}>
+                    {signal && (
+                      <div className={styles.signalText}>
+                        <p>{signal.text}</p>
+                      </div>
+                    )}
+
+                    {context?.whyItMatters && (
+                      <div className={styles.contextText}>
+                        <span className={styles.contextLabel}>Why this matters:</span>
+                        <p>{context.whyItMatters}</p>
+                      </div>
+                    )}
+
+                    {recentData.length > 1 && (
+                      <div className={styles.sparklineContainer}>
+                        <div className={styles.sparkline}>
+                          {recentData.map((point, idx) => (
+                            <div
+                              key={idx}
+                              className={styles.bar}
+                              style={{
+                                height: `${getBarHeight(point.value, sparklineMetrics)}%`,
+                              }}
+                              title={`${point.date}: ${point.value}`}
+                            />
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
