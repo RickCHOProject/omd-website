@@ -43,19 +43,26 @@ export default function MarketPage() {
     return value.toFixed(2);
   };
 
-  const getChangeColor = (change, unit) => {
+  const getChangeColor = (change, series) => {
     if (!change && change !== 0) return 'var(--text-muted)';
 
-    // For mortgage rates and days, down is good (green)
-    // For prices and units, up is good (green)
-    const isPositiveGood =
-      unit === 'months' ||
-      (typeof unit === 'string' && unit.includes('rate'));
+    // Series where DOWN is favorable (green):
+    // - Mortgage rates (lower = cheaper borrowing)
+    // - Unemployment rate (lower = stronger economy)
+    // - Fed funds rate (lower = looser monetary policy)
+    const downIsGood = [
+      'MORTGAGE30US', 'MORTGAGE15US', 'DFF', 'UNRATE',
+    ];
 
     const isUp = change > 0;
-    const isFavorable = isPositiveGood ? !isUp : isUp;
+    const seriesId = series?.series || '';
 
-    return isFavorable ? 'var(--green)' : 'var(--red)';
+    if (downIsGood.includes(seriesId)) {
+      return isUp ? 'var(--red)' : 'var(--green)';
+    }
+
+    // For everything else (prices, supply, permits, etc.), up is good
+    return isUp ? 'var(--green)' : 'var(--red)';
   };
 
   const getChangeArrow = (change) => {
@@ -145,6 +152,23 @@ export default function MarketPage() {
     );
   }
 
+  // Group by category
+  const categoryLabels = {
+    rates: 'Interest Rates',
+    pricing: 'Home Prices',
+    supply: 'Supply & Construction',
+    macro: 'Macro Economy',
+  };
+
+  const categoryOrder = ['rates', 'pricing', 'supply', 'macro'];
+
+  const grouped = {};
+  marketData.forEach((series) => {
+    const cat = series.category || 'other';
+    if (!grouped[cat]) grouped[cat] = [];
+    grouped[cat].push(series);
+  });
+
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -153,11 +177,20 @@ export default function MarketPage() {
           <span>Market Intelligence</span>
         </div>
         <h1 className={styles.title}>What The Data Says Today</h1>
-        <p className={styles.subtitle}>Real-time economic indicators at a glance</p>
+        <p className={styles.subtitle}>
+          Live economic indicators from FRED, updated automatically. The numbers that move real estate.
+        </p>
       </header>
 
-      <div className={styles.grid}>
-        {marketData.map((series) => {
+      {categoryOrder.map((cat) => {
+        const items = grouped[cat];
+        if (!items || items.length === 0) return null;
+
+        return (
+          <div key={cat} className={styles.categorySection}>
+            <h2 className={styles.categoryTitle}>{categoryLabels[cat] || cat}</h2>
+            <div className={styles.grid}>
+              {items.map((series) => {
           const latest = getLatestValue(series);
           const sparklineMetrics = getSparklineMetrics(series.data);
           const recentData = series.data ? series.data.slice(0, 6) : [];
@@ -184,7 +217,7 @@ export default function MarketPage() {
                   {latest && latest.change !== null && latest.change !== undefined && (
                     <p
                       className={styles.change}
-                      style={{ color: getChangeColor(latest.change, series.unit) }}
+                      style={{ color: getChangeColor(latest.change, series) }}
                     >
                       <span className={styles.arrow}>{getChangeArrow(latest.change)}</span>
                       {Math.abs(latest.change).toFixed(2)}
@@ -222,8 +255,11 @@ export default function MarketPage() {
               </div>
             </div>
           );
-        })}
-      </div>
+              })}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }

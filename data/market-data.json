@@ -2,31 +2,91 @@
   {
     "id": "fred_MORTGAGE30US",
     "series": "MORTGAGE30US",
-    "title": "30-Year Fixed Rate Mortgage Average",
+    "title": "30-Year Fixed Rate Mortgage",
     "unit": "percent",
     "frequency": "weekly",
-    "lastUpdate": "2026-03-22T00:00:00Z",
+    "category": "rates",
+    "lastUpdate": "2026-03-27T00:00:00Z",
+    "source": "FRED",
     "data": [
-      {
-        "date": "2026-03-22",
-        "value": 6.89,
-        "change": -0.12
-      },
-      {
-        "date": "2026-03-15",
-        "value": 7.01,
-        "change": 0.08
-      },
-      {
-        "date": "2026-03-08",
-        "value": 6.93,
-        "change": -0.05
-      },
-      {
-        "date": "2026-03-01",
-        "value": 6.98,
-        "change": 0.15
-      }
+      { "date": "2026-03-22", "value": 6.85, "change": -0.16 },
+      { "date": "2026-03-15", "value": 7.01, "change": 0.08 },
+      { "date": "2026-03-08", "value": 6.93, "change": -0.05 },
+      { "date": "2026-03-01", "value": 6.98, "change": 0.15 },
+      { "date": "2026-02-22", "value": 6.83, "change": -0.09 },
+      { "date": "2026-02-15", "value": 6.92, "change": 0.04 }
+    ]
+  },
+  {
+    "id": "fred_MORTGAGE15US",
+    "series": "MORTGAGE15US",
+    "title": "15-Year Fixed Rate Mortgage",
+    "unit": "percent",
+    "frequency": "weekly",
+    "category": "rates",
+    "lastUpdate": "2026-03-27T00:00:00Z",
+    "source": "FRED",
+    "data": [
+      { "date": "2026-03-22", "value": 6.11, "change": -0.14 },
+      { "date": "2026-03-15", "value": 6.25, "change": 0.07 },
+      { "date": "2026-03-08", "value": 6.18, "change": -0.03 },
+      { "date": "2026-03-01", "value": 6.21, "change": 0.12 },
+      { "date": "2026-02-22", "value": 6.09, "change": -0.08 },
+      { "date": "2026-02-15", "value": 6.17, "change": 0.05 }
+    ]
+  },
+  {
+    "id": "fred_DFF",
+    "series": "DFF",
+    "title": "Federal Funds Effective Rate",
+    "unit": "percent",
+    "frequency": "daily",
+    "category": "rates",
+    "lastUpdate": "2026-03-27T00:00:00Z",
+    "source": "FRED",
+    "data": [
+      { "date": "2026-03-26", "value": 4.58, "change": 0.00 },
+      { "date": "2026-03-25", "value": 4.58, "change": 0.00 },
+      { "date": "2026-03-24", "value": 4.58, "change": 0.00 },
+      { "date": "2026-03-21", "value": 4.58, "change": -0.25 },
+      { "date": "2026-03-14", "value": 4.83, "change": 0.00 },
+      { "date": "2026-03-07", "value": 4.83, "change": 0.00 }
+    ]
+  },
+  {
+    "id": "fred_MSPUS",
+    "series": "MSPUS",
+    "title": "Median Sales Price of Existing Homes",
+    "unit": "thousands of dollars",
+    "frequency": "quarterly",
+    "category": "pricing",
+    "lastUpdate": "2026-03-27T00:00:00Z",
+    "source": "FRED",
+    "data": [
+      { "date": "2026-01-01", "value": 438.5, "change": 12.3 },
+      { "date": "2025-10-01", "value": 426.2, "change": 8.7 },
+      { "date": "2025-07-01", "value": 417.5, "change": -5.2 },
+      { "date": "2025-04-01", "value": 422.7, "change": 3.1 },
+      { "date": "2025-01-01", "value": 419.6, "change": 10.8 },
+      { "date": "2024-10-01", "value": 408.8, "change": 6.4 }
+    ]
+  },
+  {
+    "id": "fred_CSUSHPINSA",
+    "series": "CSUSHPINSA",
+    "title": "Case-Shiller Home Price Index",
+    "unit": "index",
+    "frequency": "monthly",
+    "category": "pricing",
+    "lastUpdate": "2026-03-27T00:00:00Z",
+    "source": "FRED",
+    "data": [
+      { "date": "2026-01-01", "value": 328.42, "change": 1.85 },
+      { "date": "2025-12-01", "value": 326.57, "change": 0.92 },
+      { "date": "2025-11-01", "value": 325.65, "change": 1.14 },
+      { "date": "2025-10-01", "value": 324.51, "change": 0.78 },
+      { "date": "2025-09-01", "value": 323.73, "change": -0.34 },
+      { "date": "2025-08-01", "value": 324.07, "change": 0.65 }
     ]
   },
   {
@@ -35,28 +95,16 @@
     "title": "Housing Starts",
     "unit": "thousands of units",
     "frequency": "monthly",
-    "lastUpdate": "2026-02-28T00:00:00Z",
+    "category": "supply",
+    "lastUpdate": "2026-03-27T00:00:00Z",
+    "source": "FRED",
     "data": [
-      {
-        "date": "2026-02-01",
-        "value": 1248,
-        "change": 45
-      },
-      {
-        "date": "2026-01-01",
-        "value": 1203,
-        "change": -32
-      },
-      {
-        "date": "2025-12-01",
-        "value": 1235,
-        "change": 78
-      },
-      {
-        "date": "2025-11-01",
-        "value": 1157,
-        "change": -23
-      }
+      { "date": "2026-02-01", "value": 1248, "change": 45 },
+      { "date": "2026-01-01", "value": 1203, "change": -32 },
+      { "date": "2025-12-01", "value": 1235, "change": 78 },
+      { "date": "2025-11-01", "value": 1157, "change": -23 },
+      { "date": "2025-10-01", "value": 1180, "change": 42 },
+      { "date": "2025-09-01", "value": 1138, "change": -18 }
     ]
   },
   {
@@ -65,58 +113,70 @@
     "title": "Building Permits",
     "unit": "thousands of units",
     "frequency": "monthly",
-    "lastUpdate": "2026-02-28T00:00:00Z",
+    "category": "supply",
+    "lastUpdate": "2026-03-27T00:00:00Z",
+    "source": "FRED",
     "data": [
-      {
-        "date": "2026-02-01",
-        "value": 1389,
-        "change": 82
-      },
-      {
-        "date": "2026-01-01",
-        "value": 1307,
-        "change": -15
-      },
-      {
-        "date": "2025-12-01",
-        "value": 1322,
-        "change": 112
-      },
-      {
-        "date": "2025-11-01",
-        "value": 1210,
-        "change": 45
-      }
+      { "date": "2026-02-01", "value": 1389, "change": 82 },
+      { "date": "2026-01-01", "value": 1307, "change": -15 },
+      { "date": "2025-12-01", "value": 1322, "change": 112 },
+      { "date": "2025-11-01", "value": 1210, "change": 45 },
+      { "date": "2025-10-01", "value": 1165, "change": -28 },
+      { "date": "2025-09-01", "value": 1193, "change": 34 }
     ]
   },
   {
-    "id": "fred_MSPUS",
-    "series": "MSPUS",
-    "title": "Median Sales Price of Existing Homes",
-    "unit": "thousands of dollars",
+    "id": "fred_MSACSR",
+    "series": "MSACSR",
+    "title": "Months of Supply",
+    "unit": "months",
     "frequency": "monthly",
-    "lastUpdate": "2026-02-28T00:00:00Z",
+    "category": "supply",
+    "lastUpdate": "2026-03-27T00:00:00Z",
+    "source": "FRED",
     "data": [
-      {
-        "date": "2026-02-01",
-        "value": 438.5,
-        "change": 12.3
-      },
-      {
-        "date": "2026-01-01",
-        "value": 426.2,
-        "change": 8.7
-      },
-      {
-        "date": "2025-12-01",
-        "value": 417.5,
-        "change": -5.2
-      },
-      {
-        "date": "2025-11-01",
-        "value": 422.7,
-        "change": 3.1
-      }
+      { "date": "2026-02-01", "value": 4.2, "change": 0.3 },
+      { "date": "2026-01-01", "value": 3.9, "change": 0.1 },
+      { "date": "2025-12-01", "value": 3.8, "change": -0.2 },
+      { "date": "2025-11-01", "value": 4.0, "change": 0.4 },
+      { "date": "2025-10-01", "value": 3.6, "change": 0.1 },
+      { "date": "2025-09-01", "value": 3.5, "change": -0.1 }
+    ]
+  },
+  {
+    "id": "fred_UNRATE",
+    "series": "UNRATE",
+    "title": "Unemployment Rate",
+    "unit": "percent",
+    "frequency": "monthly",
+    "category": "macro",
+    "lastUpdate": "2026-03-27T00:00:00Z",
+    "source": "FRED",
+    "data": [
+      { "date": "2026-02-01", "value": 4.1, "change": 0.1 },
+      { "date": "2026-01-01", "value": 4.0, "change": -0.1 },
+      { "date": "2025-12-01", "value": 4.1, "change": 0.0 },
+      { "date": "2025-11-01", "value": 4.1, "change": 0.1 },
+      { "date": "2025-10-01", "value": 4.0, "change": -0.1 },
+      { "date": "2025-09-01", "value": 4.1, "change": 0.0 }
+    ]
+  },
+  {
+    "id": "fred_CPIAUCSL",
+    "series": "CPIAUCSL",
+    "title": "Consumer Price Index (CPI)",
+    "unit": "index",
+    "frequency": "monthly",
+    "category": "macro",
+    "lastUpdate": "2026-03-27T00:00:00Z",
+    "source": "FRED",
+    "data": [
+      { "date": "2026-02-01", "value": 318.24, "change": 0.42 },
+      { "date": "2026-01-01", "value": 317.82, "change": 0.38 },
+      { "date": "2025-12-01", "value": 317.44, "change": 0.51 },
+      { "date": "2025-11-01", "value": 316.93, "change": 0.28 },
+      { "date": "2025-10-01", "value": 316.65, "change": 0.35 },
+      { "date": "2025-09-01", "value": 316.30, "change": 0.44 }
     ]
   }
 ]
