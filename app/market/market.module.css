@@ -69,6 +69,34 @@
   border-bottom: 1px solid rgba(212, 168, 83, 0.2);
 }
 
+/* ===== CATEGORY INSIGHT — THE "SO WHAT" ===== */
+
+.categoryInsight {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: rgba(212, 168, 83, 0.06);
+  border-left: 3px solid var(--gold);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.categoryInsight .insightIcon {
+  color: var(--gold);
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.categoryInsight p {
+  color: var(--text-secondary);
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.65;
+}
+
 /* ===== GRID LAYOUT ===== */
 
 .grid {
@@ -213,6 +241,76 @@
   font-weight: 600;
   margin: 0;
   letter-spacing: 0.5px;
+}
+
+/* ===== SIGNAL BADGE — BULLISH/BEARISH/NEUTRAL ===== */
+
+.signalBadge {
+  display: inline-block;
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid;
+  width: fit-content;
+}
+
+.signal_bullish {
+  color: var(--green);
+  border-color: var(--green);
+  background: rgba(0, 255, 136, 0.06);
+}
+
+.signal_bearish {
+  color: var(--red);
+  border-color: var(--red);
+  background: rgba(255, 68, 68, 0.06);
+}
+
+.signal_neutral {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(212, 168, 83, 0.06);
+}
+
+/* ===== SIGNAL & CONTEXT TEXT ===== */
+
+.signalText {
+  padding: 0.75rem;
+  background: rgba(212, 168, 83, 0.04);
+  border: 1px solid rgba(212, 168, 83, 0.12);
+}
+
+.signalText p {
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.contextText {
+  padding-top: 0.5rem;
+}
+
+.contextLabel {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.contextText p {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.55;
+  font-style: italic;
 }
 
 /* ===== SPARKLINE — 6-BAR TREND ===== */
