@@ -23,7 +23,7 @@ The 30-year fixed mortgage rate dipped below 6% last week for the first time sin
 
 Here's why it matters for investors:
 
-- **Buyer demand is about to pick up.** Every time rates drop, more buyers come off the sidelines. That means faster dispositions on your flips and wholesale deals.
+- **Buyer demand is about to pick up.** Every time rates drop, more buyers come off the sidelines. That means faster dispositions on your flips and off-market acquisitions.
 - **Refinancing gets cheaper.** If you're running BRRRR strategies, your cash-out refi just got more favorable. That's more capital recycled, faster.
 - **Seller motivation stays.** Rates dropping doesn't fix the sellers who are behind on payments, going through divorce, or inherited a property they don't want. Those motivated sellers are still there — and now you have more exit options.
 
@@ -51,7 +51,7 @@ If you're buying in any of these markets, sellers are more flexible than they've
 
 Here's the play:
 
-**If you're wholesaling:** More inventory means more motivated sellers. The ones who haven't sold in 60+ days on the MLS are starting to get nervous. Direct-to-seller marketing hits different right now.
+**If you're acquiring off-market:** More inventory means more motivated sellers. The ones who haven't sold in 60+ days on the MLS are starting to get nervous. Direct-to-seller marketing hits different right now.
 
 **If you're flipping:** Lower rates mean your end buyer can afford more. A buyer who qualified for $350K at 7% can now swing $380K at 5.8%. That gives you room on your ARV.
 

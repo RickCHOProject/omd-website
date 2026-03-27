@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import HUDCorners from '../components/HUDCorners';
 import styles from './creators.module.css';
 
 export default function CreatorProfiles() {
@@ -34,30 +35,30 @@ export default function CreatorProfiles() {
   const getVerdictColor = (verdict) => {
     switch (verdict) {
       case 'Highly Reliable':
-        return '#27ae60';
+        return '#00D68F';
       case 'Mostly Reliable':
-        return '#00b894';
+        return '#00D68F';
       case 'Mixed Reliability':
-        return '#f39c12';
+        return '#FFB020';
       case 'Low Reliability':
-        return '#e74c3c';
+        return '#FF4D4D';
       default:
-        return '#999';
+        return '#4A6B5C';
     }
   };
 
   const getVerdictBg = (verdict) => {
     switch (verdict) {
       case 'Highly Reliable':
-        return '#d5f4e6';
+        return 'rgba(0,214,143,0.1)';
       case 'Mostly Reliable':
-        return '#d5f4e6';
+        return 'rgba(0,214,143,0.1)';
       case 'Mixed Reliability':
-        return '#fdebd0';
+        return 'rgba(255,176,32,0.1)';
       case 'Low Reliability':
-        return '#fadbd8';
+        return 'rgba(255,77,77,0.1)';
       default:
-        return '#f0f0f0';
+        return 'rgba(74,107,92,0.1)';
     }
   };
 
@@ -69,7 +70,7 @@ export default function CreatorProfiles() {
           className={styles.barFill}
           style={{
             width: `${score * 100}%`,
-            backgroundColor: score >= 0.7 ? '#00b894' : score >= 0.5 ? '#f39c12' : '#e74c3c',
+            backgroundColor: score >= 0.7 ? '#D4A853' : score >= 0.5 ? '#FFB020' : '#FF4D4D',
           }}
         />
       </div>
@@ -119,6 +120,7 @@ export default function CreatorProfiles() {
         ) : (
           creators.map((creator) => (
             <div key={creator.id} className={styles.creatorCard}>
+              <HUDCorners />
               <div className={styles.cardHeader}>
                 <div className={styles.headerTop}>
                   <div>

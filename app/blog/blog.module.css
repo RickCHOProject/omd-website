@@ -1,0 +1,152 @@
+/* ===== BLOG LISTING PAGE ===== */
+
+.container {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  padding: 60px 40px 120px;
+  font-family: var(--font-body);
+}
+
+.wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Page header */
+.header {
+  margin-bottom: 60px;
+}
+
+.pageTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 1.5rem;
+}
+
+.pageTag .bar {
+  width: 32px;
+  height: 3px;
+  background: var(--gold);
+}
+
+.pageTag span {
+  font-weight: 900;
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  color: var(--gold);
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.title {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  margin-bottom: 1rem;
+  border-left: 4px solid var(--gold);
+  padding-left: 16px;
+}
+
+.subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 600px;
+}
+
+/* Posts grid */
+.postsGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.postCard {
+  background: var(--bg-card);
+  border: var(--border-hard);
+  padding: 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: block;
+}
+
+.postCard:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--gold);
+  box-shadow: 0 0 20px var(--gold-glow);
+}
+
+.postMeta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: var(--gold);
+  color: var(--bg-primary);
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.date {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.readTime {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.postTitle {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.postExcerpt {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Empty state */
+.emptyState {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--text-muted);
+  font-size: 18px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 20px 120px;
+  }
+
+  .title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    letter-spacing: -1px;
+  }
+
+  .postCard {
+    padding: 24px;
+  }
+}

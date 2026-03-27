@@ -43,8 +43,8 @@ export default function MarketDashboard() {
   };
 
   const getChangeColor = (change) => {
-    if (!change) return '#999';
-    return change > 0 ? '#00b894' : '#e74c3c';
+    if (!change) return '#4A6B5C';
+    return change > 0 ? '#00D68F' : '#FF4D4D';
   };
 
   if (loading) {

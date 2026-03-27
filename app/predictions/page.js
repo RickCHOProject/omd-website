@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import HUDCorners from '../components/HUDCorners';
 import styles from './predictions.module.css';
 
 export default function PredictionTracker() {
@@ -37,24 +38,24 @@ export default function PredictionTracker() {
   }
 
   const getConfidenceColor = (confidence) => {
-    if (confidence >= 0.8) return '#27ae60';
-    if (confidence >= 0.6) return '#00b894';
-    if (confidence >= 0.4) return '#f39c12';
-    return '#e74c3c';
+    if (confidence >= 0.8) return '#00D68F';
+    if (confidence >= 0.6) return '#D4A853';
+    if (confidence >= 0.4) return '#FFB020';
+    return '#FF4D4D';
   };
 
   const getVerdictColor = (verdict) => {
     switch (verdict) {
       case 'Correct':
-        return '#27ae60';
+        return '#00D68F';
       case 'Incorrect':
-        return '#e74c3c';
+        return '#FF4D4D';
       case 'Partial':
-        return '#f39c12';
+        return '#FFB020';
       case 'Too Early':
-        return '#3498db';
+        return '#5B8DEF';
       default:
-        return '#999';
+        return '#4A6B5C';
     }
   };
 
@@ -119,6 +120,7 @@ export default function PredictionTracker() {
         ) : (
           predictions.map((pred) => (
             <div key={pred.id} className={styles.predictionCard}>
+              <HUDCorners />
               <div className={styles.cardTop}>
                 <div className={styles.titleSection}>
                   <h3 className={styles.title}>{pred.title}</h3>

@@ -1,0 +1,36 @@
+/* Verdict Pill Badges */
+.verdictPill {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 0.5rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  border: 2px solid;
+  white-space: nowrap;
+}
+
+.verdictPill.supported {
+  border-color: #00D68F;
+  color: #00D68F;
+  background-color: rgba(0, 214, 143, 0.08);
+}
+
+.verdictPill.contradicted {
+  border-color: #FF4D4D;
+  color: #FF4D4D;
+  background-color: rgba(255, 77, 77, 0.08);
+}
+
+.verdictPill.mixed {
+  border-color: #FFB020;
+  color: #FFB020;
+  background-color: rgba(255, 176, 32, 0.08);
+}
+
+.verdictPill.insufficient {
+  border-color: #7FA893;
+  color: #7FA893;
+  background-color: rgba(127, 168, 147, 0.08);
+}

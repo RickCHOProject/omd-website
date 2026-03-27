@@ -1,0 +1,150 @@
+/* ===== SINGLE BLOG POST PAGE ===== */
+
+.container {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  padding: 60px 40px 120px;
+  font-family: var(--font-body);
+}
+
+.wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* Back link */
+.backLink {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+  transition: all 0.3s ease;
+}
+
+.backLink:hover {
+  color: var(--gold-light);
+  gap: 12px;
+}
+
+/* Post header */
+.header {
+  margin-bottom: 48px;
+}
+
+.postMeta {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background: var(--gold);
+  color: var(--bg-primary);
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.date {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.readTime {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.title {
+  font-size: 38px;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-style: italic;
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 16px;
+}
+
+.subtitle {
+  font-size: 20px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* CTA box */
+.ctaBox {
+  background: var(--bg-card);
+  border: var(--border-hard);
+  border-left: 4px solid var(--gold);
+  padding: 32px;
+  text-align: center;
+  margin-top: 48px;
+}
+
+.ctaTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.ctaDescription {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.ctaButton {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--bg-primary);
+  padding: 12px 24px;
+  font-weight: 900;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px var(--gold-glow);
+}
+
+.ctaButton:hover {
+  box-shadow: 0 0 40px var(--gold-glow-strong);
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 20px 120px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+  }
+
+  .ctaBox {
+    padding: 24px;
+  }
+}

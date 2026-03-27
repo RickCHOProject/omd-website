@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import HUDCorners from '../components/HUDCorners';
 import styles from './feed.module.css';
 
 export default function ContentFeed() {
@@ -38,30 +39,30 @@ export default function ContentFeed() {
   const getVerdictColor = (verdict) => {
     switch (verdict) {
       case 'Supported':
-        return '#27ae60';
+        return '#00D68F';
       case 'Contradicted':
-        return '#e74c3c';
+        return '#FF4D4D';
       case 'Mixed':
-        return '#f39c12';
+        return '#FFB020';
       case 'Insufficient Data':
-        return '#3498db';
+        return '#5B8DEF';
       default:
-        return '#999';
+        return '#4A6B5C';
     }
   };
 
   const getVerdictBg = (verdict) => {
     switch (verdict) {
       case 'Supported':
-        return '#d5f4e6';
+        return 'rgba(0,214,143,0.1)';
       case 'Contradicted':
-        return '#fadbd8';
+        return 'rgba(255,77,77,0.1)';
       case 'Mixed':
-        return '#fdebd0';
+        return 'rgba(255,176,32,0.1)';
       case 'Insufficient Data':
-        return '#d6eaf8';
+        return 'rgba(91,141,239,0.1)';
       default:
-        return '#f0f0f0';
+        return 'rgba(74,107,92,0.1)';
     }
   };
 
@@ -69,9 +70,9 @@ export default function ContentFeed() {
     if (!claims || claims.length === 0) return null;
 
     const colors = {
-      supported: '#27ae60',
-      contradicted: '#e74c3c',
-      insufficient: '#3498db',
+      supported: '#00D68F',
+      contradicted: '#FF4D4D',
+      insufficient: '#5B8DEF',
     };
 
     let symbol = '';
@@ -172,6 +173,7 @@ export default function ContentFeed() {
         ) : (
           analyses.map((analysis) => (
             <div key={analysis.id} className={styles.analysisCard}>
+              <HUDCorners />
               <div className={styles.cardHeader}>
                 <div className={styles.creatorInfo}>
                   <h3 className={styles.creatorName}>{analysis.creatorName}</h3>
