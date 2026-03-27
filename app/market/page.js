@@ -107,6 +107,36 @@ const SERIES_CONTEXT = {
       return { label: 'DEFLATION RISK', tone: 'bullish', text: `CPI flat or declining — very unusual. The Fed will likely cut aggressively. Expect a wave of demand when rates respond. Position for the upswing.` };
     },
   },
+  DCOILBRENTEU: {
+    what: 'The global benchmark price for crude oil. Affects construction costs, transportation, consumer spending power, and inflation expectations.',
+    whyItMatters: 'Oil is the hidden input in every real estate deal. Rising oil → higher construction costs → fewer new builds → tighter supply. It also squeezes consumer budgets, reducing what buyers can afford for a mortgage payment.',
+    getSignal: (value, change) => {
+      if (value > 90) return { label: 'OIL SPIKE', tone: 'bearish', text: `$${value}/barrel — elevated. Construction costs rising, consumer budgets squeezed. Expect inflation pressure to keep rates elevated. New construction may slow.` };
+      if (value > 80) return { label: 'ELEVATED', tone: 'neutral', text: `$${value}/barrel — above comfort zone. Adds inflationary pressure. Watch for this to flow through to CPI, which constrains the Fed from cutting rates.` };
+      if (value > 65) return { label: 'STABLE', tone: 'bullish', text: `$${value}/barrel — manageable. Not adding significant inflationary pressure. Construction costs stable, consumer spending power intact.` };
+      return { label: 'OIL LOW', tone: 'bullish', text: `$${value}/barrel — low oil supports lower inflation, which supports rate cuts. Also keeps construction and transportation costs down. Tailwind for real estate.` };
+    },
+  },
+  ACTLISCOUUS: {
+    what: 'The total number of homes actively listed for sale across the US right now. This is the raw inventory number.',
+    whyItMatters: 'More listings = more options and less competition per deal. When inventory rises, sellers get anxious and negotiation power shifts to buyers. Below 700K nationally is historically tight.',
+    getSignal: (value, change) => {
+      if (value > 900000) return { label: 'INVENTORY SURGE', tone: 'bullish', text: `${(value/1000).toFixed(0)}K active listings — significantly above recent norms. Buyers have options. Sellers compete for attention. Prime acquisition environment.` };
+      if (value > 750000) return { label: 'INVENTORY BUILDING', tone: 'bullish', text: `${(value/1000).toFixed(0)}K listings — above the tight levels we saw in 2021-2024. Market is normalizing. Negotiation leverage improving for acquisitions.` };
+      if (value > 600000) return { label: 'MODERATE SUPPLY', tone: 'neutral', text: `${(value/1000).toFixed(0)}K active listings. Not flooded, not starved. Off-market sourcing still provides an edge over retail competition.` };
+      return { label: 'INVENTORY CRISIS', tone: 'bearish', text: `Only ${(value/1000).toFixed(0)}K listings nationally — extremely tight. On-market deals will be competitive. Off-market is your only real advantage here.` };
+    },
+  },
+  MEDDAYONMARUS: {
+    what: 'How long the typical home sits on market before going under contract. This is the pulse of buyer urgency.',
+    whyItMatters: 'Short DOM = hot market, less negotiation room, faster decisions needed. Long DOM = sellers get anxious, more room to negotiate, can be more selective. When DOM stretches past 45 days, seller psychology shifts dramatically.',
+    getSignal: (value, change) => {
+      if (value > 60) return { label: 'MARKET COOLING', tone: 'bullish', text: `${value} days median — homes sitting. Sellers are getting anxious. Price reductions increasing. Strong position to negotiate on both on-market and off-market deals.` };
+      if (value > 40) return { label: 'BALANCED PACE', tone: 'neutral', text: `${value} days — moderate pace. Not frantic, not stale. Good window for acquisitions — sellers are motivated but not desperate. Run your numbers, don't rush.` };
+      if (value > 25) return { label: 'MOVING FAST', tone: 'bearish', text: `${value} days — homes moving quickly. Need to make decisions fast on deals. Less room for extended negotiation. Speed matters more than squeezing every dollar.` };
+      return { label: 'FRENZY', tone: 'bearish', text: `Only ${value} days — homes selling almost immediately. Extremely competitive. Off-market is the only way to avoid bidding wars. Don't count on negotiating down from list.` };
+    },
+  },
 };
 
 // Category-level insight generator
@@ -175,6 +205,170 @@ const getCategoryInsight = (category, seriesData) => {
   }
 };
 
+// ===== PERFECT STORM COMPOSITE METER =====
+// Synthesizes all indicators into a single acquisition-favorability score
+// Scale: -100 (worst for buyers) to +100 (best for buyers)
+
+const getCompositeScore = (seriesData) => {
+  const getData = (id) => {
+    const s = seriesData.find((d) => d.series === id);
+    return s?.data?.[0] || null;
+  };
+
+  let totalScore = 0;
+  let totalWeight = 0;
+
+  const indicators = [
+    // RATES — weight: high (these drive the whole market)
+    {
+      id: 'MORTGAGE30US',
+      weight: 20,
+      score: () => {
+        const d = getData('MORTGAGE30US');
+        if (!d) return null;
+        // Below 6% = +100, 6-6.5 = +50, 6.5-7 = 0, 7-7.5 = -50, above 7.5 = -100
+        if (d.value < 6.0) return 100;
+        if (d.value < 6.5) return 50;
+        if (d.value < 7.0) return 0;
+        if (d.value < 7.5) return -50;
+        return -100;
+      },
+    },
+    {
+      id: 'DFF',
+      weight: 15,
+      score: () => {
+        const d = getData('DFF');
+        if (!d) return null;
+        // Fed cutting = very bullish, holding low = bullish, holding high = bearish, hiking = very bearish
+        if (d.change < -0.1) return 100;
+        if (d.change === 0 && d.value < 4.5) return 50;
+        if (d.change === 0) return -25;
+        if (d.change > 0) return -100;
+        return 0;
+      },
+    },
+    // SUPPLY — weight: high (inventory = negotiating leverage)
+    {
+      id: 'MSACSR',
+      weight: 18,
+      score: () => {
+        const d = getData('MSACSR');
+        if (!d) return null;
+        // >6mo = +100, 5-6 = +50, 4-5 = 0, 3-4 = -50, <3 = -100
+        if (d.value > 6) return 100;
+        if (d.value > 5) return 50;
+        if (d.value > 4) return 0;
+        if (d.value > 3) return -50;
+        return -100;
+      },
+    },
+    {
+      id: 'ACTLISCOUUS',
+      weight: 12,
+      score: () => {
+        const d = getData('ACTLISCOUUS');
+        if (!d) return null;
+        if (d.value > 900000) return 100;
+        if (d.value > 750000) return 50;
+        if (d.value > 600000) return 0;
+        return -75;
+      },
+    },
+    {
+      id: 'MEDDAYONMARUS',
+      weight: 10,
+      score: () => {
+        const d = getData('MEDDAYONMARUS');
+        if (!d) return null;
+        // Longer DOM = more leverage for buyers
+        if (d.value > 60) return 100;
+        if (d.value > 45) return 50;
+        if (d.value > 30) return 0;
+        if (d.value > 20) return -50;
+        return -100;
+      },
+    },
+    // PRICING — weight: moderate
+    {
+      id: 'MSPUS',
+      weight: 8,
+      score: () => {
+        const d = getData('MSPUS');
+        if (!d) return null;
+        // Falling prices = good for buyers acquiring
+        if (d.change < -5) return 75;
+        if (d.change < 0) return 50;
+        if (d.change < 5) return 0;
+        if (d.change < 15) return -25;
+        return -75;
+      },
+    },
+    // MACRO — weight: moderate
+    {
+      id: 'CPIAUCSL',
+      weight: 8,
+      score: () => {
+        const d = getData('CPIAUCSL');
+        if (!d) return null;
+        // Cooling inflation = rate cuts coming = bullish
+        if (d.change < 0.2) return 75;
+        if (d.change < 0.3) return 25;
+        if (d.change < 0.5) return -25;
+        return -75;
+      },
+    },
+    {
+      id: 'DCOILBRENTEU',
+      weight: 5,
+      score: () => {
+        const d = getData('DCOILBRENTEU');
+        if (!d) return null;
+        if (d.value < 65) return 75;
+        if (d.value < 80) return 25;
+        if (d.value < 90) return -25;
+        return -75;
+      },
+    },
+    {
+      id: 'UNRATE',
+      weight: 4,
+      score: () => {
+        const d = getData('UNRATE');
+        if (!d) return null;
+        // Moderate unemployment = distressed sellers but economy ok
+        if (d.value > 5.0) return 25; // lots of distressed but risky
+        if (d.value > 4.0) return 50; // sweet spot
+        if (d.value > 3.5) return 25;
+        return 0; // too tight, no distressed sellers
+      },
+    },
+  ];
+
+  indicators.forEach((ind) => {
+    const s = ind.score();
+    if (s !== null) {
+      totalScore += s * ind.weight;
+      totalWeight += ind.weight;
+    }
+  });
+
+  if (totalWeight === 0) return null;
+
+  const normalized = totalScore / totalWeight; // -100 to +100
+  return Math.round(normalized);
+};
+
+const getCompositeLabel = (score) => {
+  if (score === null) return { label: 'INSUFFICIENT DATA', tone: 'neutral', description: 'Not enough data points to generate a composite reading.' };
+  if (score >= 60) return { label: 'PRIME ACQUISITION WINDOW', tone: 'bullish', description: 'Multiple indicators are aligned in buyers\' favor. Rates, inventory, and macro conditions all support aggressive acquisition strategies. This is the environment you build for.' };
+  if (score >= 30) return { label: 'CONDITIONS FAVOR BUYERS', tone: 'bullish', description: 'Most signals lean in your favor. Not a perfect storm, but a solid environment for acquisitions. Focus on your strongest channels and move with confidence.' };
+  if (score >= 0) return { label: 'MIXED SIGNALS — STAY SELECTIVE', tone: 'neutral', description: 'No clear directional edge. Some indicators favor buyers, others favor sellers. Be selective — only pursue deals with strong fundamentals and clear margin of safety.' };
+  if (score >= -30) return { label: 'HEADWINDS BUILDING', tone: 'neutral', description: 'Conditions are tilting against buyers. Tighten your underwriting, add extra margin, and focus on truly motivated sellers. This isn\'t the time to stretch.' };
+  if (score >= -60) return { label: 'SELLER\'S ADVANTAGE', tone: 'bearish', description: 'The market favors sellers right now. Acquisitions will be harder and more competitive. Focus on off-market channels and distressed properties only.' };
+  return { label: 'EXTREME SELLER\'S MARKET', tone: 'bearish', description: 'Nearly every indicator is working against buyers. Be extremely disciplined. Only chase deeply motivated sellers with clear exit strategies already in place.' };
+};
+
 export default function MarketPage() {
   const [marketData, setMarketData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -211,6 +405,9 @@ export default function MarketPage() {
     if (unit === 'thousands of dollars') return `$${value.toFixed(0)}K`;
     if (unit === 'thousands of units') return `${value.toFixed(0)}K`;
     if (unit === 'months') return `${value.toFixed(1)}mo`;
+    if (unit === 'dollars per barrel') return `$${value.toFixed(2)}`;
+    if (unit === 'listings') return value >= 1000 ? `${(value / 1000).toFixed(0)}K` : value.toLocaleString();
+    if (unit === 'days') return `${value}`;
     return value.toFixed(2);
   };
 
@@ -222,7 +419,7 @@ export default function MarketPage() {
     // - Unemployment rate (lower = stronger economy)
     // - Fed funds rate (lower = looser monetary policy)
     const downIsGood = [
-      'MORTGAGE30US', 'MORTGAGE15US', 'DFF', 'UNRATE',
+      'MORTGAGE30US', 'MORTGAGE15US', 'DFF', 'UNRATE', 'DCOILBRENTEU',
     ];
 
     const isUp = change > 0;
@@ -352,6 +549,106 @@ export default function MarketPage() {
           Live economic indicators from FRED, updated automatically. The numbers that move real estate.
         </p>
       </header>
+
+      {/* ===== PERFECT STORM COMPOSITE METER ===== */}
+      {(() => {
+        const score = getCompositeScore(marketData);
+        const composite = getCompositeLabel(score);
+        // Map score from [-100, 100] to [0, 100] for the gauge
+        const gaugePercent = score !== null ? Math.max(0, Math.min(100, (score + 100) / 2)) : 50;
+        // Needle rotation: -90deg (far left) to +90deg (far right)
+        const needleAngle = score !== null ? (score / 100) * 90 : 0;
+
+        return (
+          <div className={styles.meterSection}>
+            <div className={styles.meterCard}>
+              <HUDCorners />
+              <div className={styles.meterHeader}>
+                <div className={styles.sectionTag}>
+                  <div className={styles.bar} />
+                  <span>Composite Signal</span>
+                </div>
+                <h2 className={styles.meterTitle}>Perfect Storm Meter</h2>
+                <p className={styles.meterSubtitle}>All indicators synthesized into one acquisition signal</p>
+              </div>
+
+              <div className={styles.gaugeContainer}>
+                {/* Gauge background arc */}
+                <svg viewBox="0 0 300 170" className={styles.gaugeSvg}>
+                  {/* Background arc */}
+                  <path
+                    d="M 30 150 A 120 120 0 0 1 270 150"
+                    fill="none"
+                    stroke="rgba(212, 168, 83, 0.15)"
+                    strokeWidth="20"
+                    strokeLinecap="round"
+                  />
+                  {/* Colored segments */}
+                  <path
+                    d="M 30 150 A 120 120 0 0 1 90 42"
+                    fill="none"
+                    stroke="var(--red)"
+                    strokeWidth="20"
+                    strokeLinecap="round"
+                    opacity="0.6"
+                  />
+                  <path
+                    d="M 90 42 A 120 120 0 0 1 150 30"
+                    fill="none"
+                    stroke="var(--red)"
+                    strokeWidth="20"
+                    opacity="0.3"
+                  />
+                  <path
+                    d="M 150 30 A 120 120 0 0 1 210 42"
+                    fill="none"
+                    stroke="var(--gold)"
+                    strokeWidth="20"
+                    opacity="0.4"
+                  />
+                  <path
+                    d="M 210 42 A 120 120 0 0 1 270 150"
+                    fill="none"
+                    stroke="var(--green)"
+                    strokeWidth="20"
+                    strokeLinecap="round"
+                    opacity="0.6"
+                  />
+                  {/* Needle */}
+                  <g transform={`rotate(${needleAngle}, 150, 150)`}>
+                    <line
+                      x1="150"
+                      y1="150"
+                      x2="150"
+                      y2="45"
+                      stroke="var(--gold)"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                    />
+                    <circle cx="150" cy="150" r="6" fill="var(--gold)" />
+                  </g>
+                  {/* Labels */}
+                  <text x="25" y="168" fill="var(--red)" fontSize="10" fontWeight="700" textAnchor="start">SELLER&apos;S</text>
+                  <text x="150" y="22" fill="var(--gold)" fontSize="10" fontWeight="700" textAnchor="middle">MIXED</text>
+                  <text x="275" y="168" fill="var(--green)" fontSize="10" fontWeight="700" textAnchor="end">BUYER&apos;S</text>
+                </svg>
+              </div>
+
+              <div className={styles.meterResult}>
+                <div className={`${styles.meterBadge} ${styles[`signal_${composite.tone}`]}`}>
+                  {composite.label}
+                </div>
+                {score !== null && (
+                  <p className={styles.meterScore}>
+                    Score: <span style={{ color: score >= 0 ? 'var(--green)' : 'var(--red)' }}>{score > 0 ? '+' : ''}{score}</span> / 100
+                  </p>
+                )}
+                <p className={styles.meterDescription}>{composite.description}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       {categoryOrder.map((cat) => {
         const items = grouped[cat];
