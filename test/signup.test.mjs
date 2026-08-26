@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import test from 'node:test';
 import { createRateLimiter } from '../lib/rateLimit.mjs';
+import { isSameOriginRequest } from '../lib/requestSecurity.mjs';
 import { buildBuyerSignup, buildSupabaseSecretHeaders } from '../lib/signup.mjs';
 
 test('buyer signups are validated, normalized, and source-locked', () => {
@@ -42,4 +43,15 @@ test('the public signup route no longer contains a publishable database key', as
   const source = await readFile(new URL('../app/api/signup/route.js', import.meta.url), 'utf8');
   assert.doesNotMatch(source, /sb_publishable_/);
   assert.match(source, /SUPABASE_SECRET_KEY/);
+});
+
+const fakeRequest = ({ origin, fetchSite } = {}) => ({
+  url: 'https://www.offmarketdaily.com/api/signup',
+  headers: { get: (name) => name === 'origin' ? origin || null : name === 'sec-fetch-site' ? fetchSite || null : null }
+});
+
+test('buyer signup accepts same-origin requests and rejects cross-site requests', () => {
+  assert.equal(isSameOriginRequest(fakeRequest({ origin: 'https://www.offmarketdaily.com', fetchSite: 'same-origin' })), true);
+  assert.equal(isSameOriginRequest(fakeRequest({ origin: 'https://evil.example' })), false);
+  assert.equal(isSameOriginRequest(fakeRequest({ fetchSite: 'cross-site' })), false);
 });

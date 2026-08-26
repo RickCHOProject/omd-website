@@ -1,5 +1,6 @@
 import { buildBuyerSignup, buildSupabaseSecretHeaders } from '../../../lib/signup.mjs';
 import { createRateLimiter, getRequestIp } from '../../../lib/rateLimit.mjs';
+import { isSameOriginRequest } from '../../../lib/requestSecurity.mjs';
 
 const SUPABASE_URL = 'https://wqvfsynpxfwacesvjlmd.supabase.co';
 const PRODUCTION_HOSTS = new Set(['offmarketdaily.com', 'www.offmarketdaily.com']);
@@ -7,6 +8,7 @@ const allowSignup = createRateLimiter();
 
 export async function POST(request) {
   try {
+    if (!isSameOriginRequest(request)) return Response.json({ error: 'Request origin is not allowed.' }, { status: 403 });
     const requestHost = (request.headers.get('x-forwarded-host') || request.headers.get('host') || '').split(':')[0];
     if (!PRODUCTION_HOSTS.has(requestHost)) {
       return Response.json({ success: false, skipped: 'non-production' });
